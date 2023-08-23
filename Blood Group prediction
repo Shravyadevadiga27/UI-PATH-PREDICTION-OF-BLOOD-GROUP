@@ -1,0 +1,46 @@
+def predict_child_blood_group(father_blood, mother_blood):
+    possible_child_blood_groups = set()
+
+    if father_blood == "A" and mother_blood == "B":
+        possible_child_blood_groups.add("AB")
+    elif father_blood == "B" and mother_blood == "A":
+        possible_child_blood_groups.add("AB")
+    elif father_blood == "A" and mother_blood == "O":
+        possible_child_blood_groups.update(["A", "O"])
+    elif father_blood == "O" and mother_blood == "A":
+        possible_child_blood_groups.update(["A", "O"])
+    elif father_blood == "B" and mother_blood == "O":
+        possible_child_blood_groups.update(["B", "O"])
+    elif father_blood == "O" and mother_blood == "B":
+        possible_child_blood_groups.update(["B", "O"])
+    elif father_blood == "A" and mother_blood == "A":
+        possible_child_blood_groups.update(["A", "O"])
+    elif father_blood == "B" and mother_blood == "B":
+        possible_child_blood_groups.update(["B", "O"])
+    elif father_blood == "O" and mother_blood == "O":
+        possible_child_blood_groups.add("O")
+    elif father_blood == "AB" and mother_blood == "A":
+        possible_child_blood_groups.update(["A","B", "O"])
+    elif father_blood == "A" and mother_blood == "AB":
+        possible_child_blood_groups.update(["A","B", "O"])
+    elif father_blood == "AB" and mother_blood == "O":
+        possible_child_blood_groups.update(["A","B","O"])
+
+    return possible_child_blood_groups
+
+def main():
+    print("Blood Group Prediction for Child")
+    print("Enter blood types as A, B, or O")
+
+    father_blood_group = input("Enter father's blood group: ").upper()
+    mother_blood_group = input("Enter mother's blood group: ").upper()
+
+    possible_groups = predict_child_blood_group(father_blood_group, mother_blood_group)
+
+    if possible_groups:
+        print("Possible blood groups for the child:", ", ".join(possible_groups))
+    else:
+        print("Invalid input or no compatible blood groups found.")
+
+if __name__ == "__main__":
+    main()
